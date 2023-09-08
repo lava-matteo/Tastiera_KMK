@@ -1,0 +1,19 @@
+Librerie/software utlizzati:
+
+CircuitPython  ---  https://circuitpython.org
+KMK  ---   https://github.com/KMKfw/kmk_firmware
+Adafruit Display SSD1306  ---  https://github.com/adafruit/Adafruit_CircuitPython_DisplayIO_SSD1306
+
+Hardware/componenti utilizzati:
+
+Raspberry Pi Pico
+SSD1306 128x64 Oled Display
+Diodi Zener 1N4728A
+Resistore 330 ohm
+
+Il progetto è una tastiera personalizzabile costruita con parti recuperate da una vecchia macchina da scrivere elettronica non funzionante (Sharp ZX-400) e altre stampate in 3d.
+I tasti sono cablati ad un Raspberry Pi Pico tramite una matrice di 6 righe e 17 colonne, ognuna delle quali corrisponde ad un pin sul Raspberry Pi. Ogni tasto è collegato alla matrice tramite un diodo, rendendo il NKEY Rollover possibile (tutti i tasti della tastiera possono essere premuti allo stesso momento senza interferenze). Il tasto blocco maiuscolo ha un led integrato che si accende e spegne a seconda dello stato del blocco, e sono presenti altri 3 LED sulla tastiera, che possono essere cablati alla tastiera tramite un resistore da 330 ohm, ma per farlo bisognerebbe liberare 3 pin sul Raspberry Pi, dato che al momento tutti i 25 pin disponibili sono in uso. Ci sono 4 Layer personalizzabili nella tastiera, a cui si può accedere tenendo premuti o semplicemente premendo dei tasti che cambiano momentaneamente il Layer utilizzato. Il Layer 1 è quello predefinito, il Layer 2 permette di accedere ai tasti da F1 a F12 tramite i numeri e a dei tasti multimediali sulle frecce, il Layer 3 permette di usare il tastierino numerico premendo i tasti "9 U I O J K L M , .", mentre il Layer 4 è uguale al primo Layer, ma può essere modificato in qualsiasi modo per aggiungere macro o funzionalità aggiuntive. Il display OLED reagisce al Layer in uso mostrando il numero su di esso, e nel caso ci dovesse essere un errore nel programma della tastiera o nel collegamento al computer, mostra gli errori su di esso, rendendo eventuali problemi facili da risolvere. Purtroppo KMK non permette l'utilizzo di animazioni sul display, ma solo di immagini Bitmap (.bmp). Alcuni dei tasti sono "double action": se il tasto viene premuto normalmente, l'output sarà normale, ma se dopo aver premuto il tasto fino in fondo lo si preme con un po' più di forza, in output uscirà anche un altro comando. Questi tasti sono le freccie (sulla tastiera R MAR, TAB SET, TAB CLR, L MAR), che se premute fino in fondo manderanno in output i tasti HOME, PGUP, PGDW e END, la barra spaziatrice, che se premuta fino in fondo manderà in output il comando multimediale PLAY, e il tasto multimediale PLAY (sulla tastiera CENT), che se premuto fino in fondo manderà in output il comando multimediale STOP.
+
+Le legende sui tasti non corrispondono completamente alle funzioni di tutti i tasti, dato che il layout dei tasti che era presente sulla macchina da scrivere non solo era QZERTY invece che QWERTY, ma utilizzava moltissimi tasti che esistevano solo su certe macchine da scrivere elettroniche, e non sui computer. 
+
+Quando la tastiera viene collegata al computer, verrà riconosciuta come disco invece che come periferica. Dentro al disco ci sono tutti i file della tastiera, rendendo la modifica veloce. Si può fare riconoscere anche come periferica, ma preferisco lasciarla come disco per comodità, dato che spesso e volentieri mi capita di modificare qualche impostazione durante l'uso.
